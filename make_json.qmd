@@ -1,0 +1,34 @@
+---
+title: "make_json"
+author: "Michael Whitehead"
+format: html
+editor: visual
+---
+
+## Import bee data and convert to .json format
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r load packages}
+library(tidyverse)
+```
+
+
+```{r import .xls}
+halctid <- read.csv('halictidae_batley.csv')
+
+```
+
+
+```{r}
+```
+
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
