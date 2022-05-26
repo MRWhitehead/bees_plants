@@ -16,7 +16,7 @@ library(tidyverse)
 ```{r import csv and rename}
 halictid <- read.csv('halictidae_batley.csv', fileEncoding="UTF-8-BOM")
 
-halictid$source <- 'ausmus'
+halictid$datasource <- 'ausmus'
 
 halictid <- rename(halictid, bee = Bee.species, flower.genus = Flower.genus, flower.species = Flower.species, flower.family = Flower.family, female = Females, male = Males)
 
@@ -40,6 +40,17 @@ halictid <- halictid %>%
   filter(flower.genus != '')
 
 ```
+
+
+```{r edit and create new flower species variable}
+
+halictid <- halictid %>%
+  mutate(flower.species = replace(flower.species, flower.species == '', 'sp'))
+
+halictid$flower <- paste(halictid$flower.genus, halictid$flower.species)
+
+```
+
 
 You can add options to executable code like this
 
