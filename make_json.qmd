@@ -13,16 +13,17 @@ When you click the **Render** button a document will be generated that includes 
 library(tidyverse)
 ```
 
+```{r import csv and rename}
+halictid <- read.csv('halictidae_batley.csv', fileEncoding="UTF-8-BOM")
 
-```{r import .xls}
-halctid <- read.csv('halictidae_batley.csv')
+halictid <- rename(halictid, bee = Bee.species, flower.genus = Flower.genus, flower.species = Flower.species, flower.family = Flower.family, female = Females, male = Males)
 
 ```
-
 
 ```{r}
-```
 
+
+```
 
 You can add options to executable code like this
 
