@@ -42,12 +42,16 @@ halictid <- halictid %>%
 ```
 
 
-```{r edit and create new flower species variable}
+```{r edit and create new flower species and total bees variables}
 
 halictid <- halictid %>%
   mutate(flower.species = replace(flower.species, flower.species == '', 'sp'))
 
 halictid$flower <- paste(halictid$flower.genus, halictid$flower.species)
+
+halictid <- halictid %>% 
+  rowwise() %>% 
+  mutate(totalbees = sum(male,female, na.rm=TRUE))
 
 ```
 
