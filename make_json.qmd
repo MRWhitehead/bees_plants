@@ -56,6 +56,24 @@ halictid <- halictid %>%
 ```
 
 
+```{r convert to json}
+
+links=data.frame(
+  flower.genus=halictid$flower.genus,
+  flower.family=halictid$flower.family,
+  source=halictid$bee,
+  target=halictid$flower,
+  weight=halictid$totalbees
+)
+
+nodes=data.frame(
+  
+)
+
+```
+
+
+
 You can add options to executable code like this
 
 ```{r}
