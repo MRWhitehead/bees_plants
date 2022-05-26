@@ -16,12 +16,28 @@ library(tidyverse)
 ```{r import csv and rename}
 halictid <- read.csv('halictidae_batley.csv', fileEncoding="UTF-8-BOM")
 
+halictid$source <- 'ausmus'
+
 halictid <- rename(halictid, bee = Bee.species, flower.genus = Flower.genus, flower.species = Flower.species, flower.family = Flower.family, female = Females, male = Males)
+
 
 ```
 
-```{r}
+```{r fix bee species variable}
 
+cond1 <- ifelse(halictid$bee == '', TRUE, FALSE)
+
+
+for(i in 1:nrow(halictid)){
+  if(cond1[i] == TRUE){
+    halictid$bee[i] <- halictid$bee[i-1]
+  } else {
+  halictid$bee[i] <- halictid$bee[i]
+}
+}
+
+halictid <- halictid %>%
+  filter(flower.genus != '')
 
 ```
 
