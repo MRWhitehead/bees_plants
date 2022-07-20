@@ -55,6 +55,17 @@ halictid <- halictid %>%
 
 ```
 
+```{r create bee genus and subgenus variables}
+
+halictid$bee.genus <- gsub( " .*$", "", halictid$bee)
+
+halictid$bee.subgenus <- gsub( ") .*", "\\1)", halictid$bee)
+
+
+```
+
+
+
 
 ```{r convert to json fr force network}
 
