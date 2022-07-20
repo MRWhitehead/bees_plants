@@ -56,19 +56,48 @@ halictid <- halictid %>%
 ```
 
 
-```{r convert to json}
+```{r convert to json fr force network}
 
 links=data.frame(
-  flower.genus=halictid$flower.genus,
-  flower.family=halictid$flower.family,
   source=halictid$bee,
   target=halictid$flower,
   weight=halictid$totalbees
 )
 
 nodes=data.frame(
-  
+  id=halictid$bee
 )
+
+
+# Transform it in a graph format
+library(igraph)
+network=graph_from_data_frame(d=links, directed=FALSE)
+
+# Transform it in a JSON format for d3.js
+library(d3r)
+data_json <- d3_igraph(network)
+
+# Save this file
+write(data_json, "data.json")
+
+```
+
+
+
+```{r convert to json for bipartite flows}
+library(jsonlite)
+
+
+flows=data.frame(
+  source=halictid$bee,
+  target=halictid$flower,
+  value=halictid$totalbees
+)
+
+
+beeflow_json <- toJSON(flows)
+cat(beeflow_json)
+write(beeflow_json, "flow.json")
 
 ```
 
